@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SampleHook — AI vocal samples for beatmakers</title>
+  <meta name="description" content="SampleHook is a native iOS app that turns hummed guides into polished AI-generated vocal samples." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0E0E10;
+      --surface: #1C1C21;
+      --border: rgba(255,255,255,0.08);
+      --text: #F4F3EF;
+      --text-dim: #9B988E;
+      --accent: #F04438;
+      --accent-high: #FF7A6E;
+    }
+    body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.6; min-height: 100vh; display: flex; flex-direction: column; }
+    nav {
+      padding: 1rem 2rem; border-bottom: 1px solid var(--border);
+      background: rgba(14,14,16,0.85); backdrop-filter: blur(12px);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo { font-size: 1.1rem; font-weight: 700; color: var(--text); text-decoration: none; }
+    .logo span { color: var(--accent); }
+    main { max-width: 720px; margin: 0 auto; padding: 6rem 1.5rem 4rem; flex: 1; text-align: center; }
+    h1 { font-size: 2.4rem; margin-bottom: 0.5rem; letter-spacing: -0.02em; }
+    h1 span { color: var(--accent); }
+    .tagline { color: var(--text-dim); font-size: 1.1rem; margin-bottom: 3rem; max-width: 520px; margin-left: auto; margin-right: auto; }
+    .links { display: flex; flex-direction: column; gap: 0.5rem; max-width: 320px; margin: 0 auto; }
+    .links a {
+      display: block; padding: 0.9rem 1.25rem;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+      color: var(--text); text-decoration: none; font-weight: 500;
+      transition: border-color 0.15s, transform 0.05s;
+    }
+    .links a:hover { border-color: var(--accent); }
+    .links a:active { transform: scale(0.99); }
+    footer { text-align: center; padding: 2rem; border-top: 1px solid var(--border); color: var(--text-dim); font-size: 0.85rem; }
+    footer a { color: var(--text-dim); }
+    footer a:hover { color: var(--text); }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="logo" href="/">Sample<span>·</span>Hook</a>
+  </nav>
+
+  <main>
+    <h1>Sample<span>·</span>Hook</h1>
+    <p class="tagline">A native iOS app for beatmakers. Hum or sing a guide, pick a style, get a polished AI vocal sample for your beat.</p>
+
+    <div class="links">
+      <a href="/privacy">Privacy Policy</a>
+      <a href="/terms">Terms of Use</a>
+      <a href="mailto:support@samplehook.app">Contact: support@samplehook.app</a>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2026 SampleHook
+  </footer>
+</body>
+</html>

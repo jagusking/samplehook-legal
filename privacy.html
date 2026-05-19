@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — SampleHook</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0E0E10;
+      --surface: #1C1C21;
+      --border: rgba(255,255,255,0.08);
+      --text: #F4F3EF;
+      --text-dim: #9B988E;
+      --accent: #F04438;
+      --accent-high: #FF7A6E;
+    }
+    body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.7; }
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      padding: 1rem 2rem; border-bottom: 1px solid var(--border);
+      background: rgba(14,14,16,0.85); backdrop-filter: blur(12px);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo { font-size: 1.1rem; font-weight: 700; color: var(--text); text-decoration: none; }
+    .logo span { color: var(--accent); }
+    .back { font-size: 0.85rem; color: var(--text-dim); text-decoration: none; }
+    .back:hover { color: var(--text); }
+    main { max-width: 760px; margin: 0 auto; padding: 4rem 1.5rem 6rem; }
+    h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+    .effective { color: var(--text-dim); font-size: 0.9rem; margin-bottom: 3rem; }
+    h2 { font-size: 1.15rem; color: var(--accent-high); margin: 2.5rem 0 0.75rem; }
+    p, li { color: #c8c6bc; margin-bottom: 0.75rem; }
+    ul { padding-left: 1.5rem; }
+    table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem; font-size: 0.92rem; }
+    th, td { text-align: left; padding: 0.6rem 0.75rem; border-bottom: 1px solid var(--border); color: #c8c6bc; vertical-align: top; }
+    th { color: var(--text); font-weight: 600; background: rgba(255,255,255,0.02); }
+    a { color: var(--accent-high); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    strong { color: var(--text); }
+    footer { text-align: center; padding: 2rem; border-top: 1px solid var(--border); color: var(--text-dim); font-size: 0.8rem; }
+    footer a { color: var(--text-dim); }
+    footer a:hover { color: var(--text); }
+    code { background: var(--surface); padding: 0.1rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="logo" href="/">Sample<span>·</span>Hook</a>
+    <a class="back" href="/">← Back to Home</a>
+  </nav>
+
+  <main>
+    <h1>Privacy Policy</h1>
+    <p class="effective">Last updated: May 18, 2026</p>
+
+    <p>SampleHook (&ldquo;the app&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;) is an iOS app that helps producers generate short vocal samples from a guide recording using third-party AI services. This Privacy Policy explains exactly what data we handle, why, and where it goes.</p>
+
+    <p>We&rsquo;ve kept this policy short and specific. If anything is unclear, email us at <a href="mailto:privacy@samplehook.app">privacy@samplehook.app</a> and we&rsquo;ll answer in plain English.</p>
+
+    <h2>1. Data we collect</h2>
+    <p>We collect only what&rsquo;s necessary to deliver the generation service:</p>
+    <table>
+      <thead><tr><th>Data</th><th>Purpose</th><th>Where it lives</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Device identifier</strong> &mdash; a random UUID generated on first launch via Apple&rsquo;s <code>identifierForVendor</code>. Not your Apple ID, not your name, not your email.</td>
+          <td>Tracks your monthly credit balance, tier (free / Pro), and per-hour rate limit.</td>
+          <td>Cloudflare KV, indefinitely (until you delete the app and reinstall).</td>
+        </tr>
+        <tr>
+          <td><strong>Recorded guide audio</strong> &mdash; the 1&ndash;10 second take you record before generating.</td>
+          <td>Uploaded to our backend so the AI can transcribe lyrics (Whisper) and reference your melody (Suno).</td>
+          <td>Cloudflare R2, deleted automatically after 30 minutes via a lifecycle rule. We do <strong>not</strong> retain guide recordings.</td>
+        </tr>
+        <tr>
+          <td><strong>Generated audio</strong> &mdash; the AI-produced vocal returned to your phone.</td>
+          <td>Delivered to your device for playback / use in your DAW.</td>
+          <td>Hosted on Suno&rsquo;s servers (presigned URL, ~72 hour expiry) and Replicate&rsquo;s servers (~1 hour expiry). We do not re-host. Your phone caches the final WAV in the app&rsquo;s local Library.</td>
+        </tr>
+        <tr>
+          <td><strong>Transcribed lyrics</strong> &mdash; text Whisper extracts from your guide audio.</td>
+          <td>Pre-populates the lyric-review screen so you can edit before generation.</td>
+          <td>Held in Cloudflare KV for at most 30 minutes, then deleted.</td>
+        </tr>
+        <tr>
+          <td><strong>In-app purchase transaction ID</strong> &mdash; the StoreKit <code>transactionId</code> for your subscription or credit pack.</td>
+          <td>Validates your purchase, prevents replay, applies your tier.</td>
+          <td>Cloudflare KV, retained 60 days for replay protection.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>2. What we do NOT collect</h2>
+    <ul>
+      <li>Your name, email address, phone number, or any Apple ID detail</li>
+      <li>Your location, contacts, photos, or any other system permission beyond microphone</li>
+      <li>Advertising identifiers (IDFA) &mdash; we don&rsquo;t run ads</li>
+      <li>Crash analytics from third parties &mdash; we use only Apple&rsquo;s built-in TestFlight crash reporting</li>
+      <li>Any behavioral or usage analytics</li>
+    </ul>
+
+    <h2>3. Third-party services that process your data</h2>
+    <p>When you tap <strong>Generate</strong>, your recorded audio + selected tags travel through the following services to produce the result:</p>
+    <table>
+      <thead><tr><th>Service</th><th>What we send</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Cloudflare</strong> (Workers, KV, R2, Workers AI)</td><td>Guide audio, tags, device UUID</td><td>Backend orchestration, Whisper transcription, temporary audio storage. <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Policy</a></td></tr>
+        <tr><td><strong>Suno</strong> (via the EvoLink gateway)</td><td>Style tags, transcribed lyrics, a public URL to your guide audio</td><td>Generates the vocal sample. <a href="https://suno.com/privacy" target="_blank" rel="noopener">Suno policy</a> &middot; <a href="https://evolink.ai/privacy" target="_blank" rel="noopener">EvoLink policy</a></td></tr>
+        <tr><td><strong>Replicate</strong></td><td>The Suno-generated audio URL</td><td>Isolates the vocal stem via demucs. <a href="https://replicate.com/privacy" target="_blank" rel="noopener">Policy</a></td></tr>
+        <tr><td><strong>ElevenLabs</strong> (Tight mode only, hidden in v1)</td><td>Guide audio + voice selection</td><td>Voice conversion. <a href="https://elevenlabs.io/privacy" target="_blank" rel="noopener">Policy</a></td></tr>
+        <tr><td><strong>Apple StoreKit</strong></td><td>Purchase receipt</td><td>Validates IAP transactions. <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Policy</a></td></tr>
+      </tbody>
+    </table>
+    <p>We don&rsquo;t share your data with anyone outside of what&rsquo;s required to produce the generation you requested. We don&rsquo;t sell, rent, or trade any data.</p>
+
+    <h2>4. Data retention summary</h2>
+    <ul>
+      <li>Guide audio uploads: <strong>30 minutes</strong> (R2 lifecycle rule)</li>
+      <li>Transcription handles: <strong>30 minutes</strong> (KV TTL)</li>
+      <li>Generated audio: not retained server-side; available from AI providers&rsquo; CDNs for 1&ndash;72 hours</li>
+      <li>Device credit record: <strong>until you delete the app</strong> (and Apple resets <code>identifierForVendor</code>)</li>
+      <li>IAP transaction IDs: <strong>60 days</strong> for replay protection</li>
+    </ul>
+
+    <h2>5. Your rights</h2>
+    <p>Because we don&rsquo;t store personally identifying information, there&rsquo;s no account to delete and no profile to edit. To completely erase your SampleHook data: delete the app from your device. Apple resets the per-vendor UUID, which breaks the link between your phone and the Cloudflare credit record.</p>
+    <p>If you&rsquo;d like us to forcibly purge the credit record sooner, email <a href="mailto:privacy@samplehook.app">privacy@samplehook.app</a> with the device UUID (visible in the app&rsquo;s About screen) and we&rsquo;ll delete it within 7 days.</p>
+
+    <h2>6. Children</h2>
+    <p>SampleHook is rated 12+ on the App Store and is not directed at children under 13. We don&rsquo;t knowingly collect data from anyone under 13. If you believe a child has used the app, email <a href="mailto:privacy@samplehook.app">privacy@samplehook.app</a> and we&rsquo;ll delete the associated record.</p>
+
+    <h2>7. Changes to this policy</h2>
+    <p>If we materially change how data is handled, we&rsquo;ll update this page and bump the &ldquo;Last updated&rdquo; date. We&rsquo;ll also note material changes in the next app release notes.</p>
+
+    <h2>8. Contact</h2>
+    <p>Questions, concerns, deletion requests: <a href="mailto:privacy@samplehook.app">privacy@samplehook.app</a></p>
+  </main>
+
+  <footer>
+    &copy; 2026 SampleHook &middot; <a href="/">Home</a> &middot; <a href="/terms">Terms</a>
+  </footer>
+</body>
+</html>

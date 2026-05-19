@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms of Use — SampleHook</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0E0E10;
+      --surface: #1C1C21;
+      --border: rgba(255,255,255,0.08);
+      --text: #F4F3EF;
+      --text-dim: #9B988E;
+      --accent: #F04438;
+      --accent-high: #FF7A6E;
+    }
+    body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.7; }
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      padding: 1rem 2rem; border-bottom: 1px solid var(--border);
+      background: rgba(14,14,16,0.85); backdrop-filter: blur(12px);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo { font-size: 1.1rem; font-weight: 700; color: var(--text); text-decoration: none; }
+    .logo span { color: var(--accent); }
+    .back { font-size: 0.85rem; color: var(--text-dim); text-decoration: none; }
+    .back:hover { color: var(--text); }
+    main { max-width: 760px; margin: 0 auto; padding: 4rem 1.5rem 6rem; }
+    h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+    .effective { color: var(--text-dim); font-size: 0.9rem; margin-bottom: 3rem; }
+    h2 { font-size: 1.15rem; color: var(--accent-high); margin: 2.5rem 0 0.75rem; }
+    h3 { font-size: 1rem; color: var(--text); margin: 1.5rem 0 0.5rem; }
+    p, li { color: #c8c6bc; margin-bottom: 0.75rem; }
+    ul { padding-left: 1.5rem; }
+    a { color: var(--accent-high); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    strong { color: var(--text); }
+    .legal-block { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem 1.5rem; margin: 1rem 0 1.5rem; font-size: 0.9rem; }
+    footer { text-align: center; padding: 2rem; border-top: 1px solid var(--border); color: var(--text-dim); font-size: 0.8rem; }
+    footer a { color: var(--text-dim); }
+    footer a:hover { color: var(--text); }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="logo" href="/">Sample<span>·</span>Hook</a>
+    <a class="back" href="/">← Back to Home</a>
+  </nav>
+
+  <main>
+    <h1>Terms of Use</h1>
+    <p class="effective">Last updated: May 18, 2026</p>
+
+    <p>These terms cover your use of the SampleHook iOS app and the backend service it connects to. By installing or using SampleHook, you agree to them. If anything here is unclear, email <a href="mailto:support@samplehook.app">support@samplehook.app</a>.</p>
+
+    <h2>1. What SampleHook is</h2>
+    <p>SampleHook is an iOS app that generates short vocal samples from a guide recording you provide. It uses third-party AI services (Suno, ElevenLabs, Replicate) to produce those samples. You always sing or hum the guide; the AI re-styles or replaces the vocal based on tags you select.</p>
+
+    <h2>2. Your account, your device</h2>
+    <p>There&rsquo;s no user account. We identify your device by a random UUID that Apple generates per-vendor. You&rsquo;re responsible for keeping your iPhone secure &mdash; anyone with access to it can spend your credits. There is no &ldquo;log out.&rdquo;</p>
+
+    <h2>3. Generated content</h2>
+
+    <h3>Ownership and license</h3>
+    <p>You retain all rights to the <strong>guide vocal you record</strong>. We don&rsquo;t claim any ownership of it.</p>
+    <p>You may use the <strong>generated vocals</strong> SampleHook produces in your own music &mdash; including commercial releases on streaming platforms &mdash; subject to two things:</p>
+    <ul>
+      <li><strong>You hold a paid SampleHook subscription</strong> (<em>SampleHook Pro Monthly</em> or <em>SampleHook Pro Annual</em>) at the time of generation. Free-tier generations may be used for personal demos but not for commercial release.</li>
+      <li><strong>Suno&rsquo;s underlying license terms permit it.</strong> SampleHook&rsquo;s generation backend is Suno (accessed via the EvoLink API gateway). Suno&rsquo;s commercial license terms apply to all output. We pass through whatever rights Suno grants &mdash; currently, commercial use is permitted on Suno&rsquo;s Pro tier, which our paid subscription covers. If Suno changes their license, we&rsquo;ll update this section and notify users in the app.</li>
+    </ul>
+
+    <h3>What you can&rsquo;t do with generated content</h3>
+    <ul>
+      <li>Sell the raw vocals as a &ldquo;sample pack&rdquo; or &ldquo;sound library&rdquo; without meaningfully transforming them.</li>
+      <li>Use generated vocals to impersonate a specific real person.</li>
+      <li>Use the app or the backend service to generate content that violates the law in your jurisdiction (defamation, harassment, sexually explicit content involving minors, etc.).</li>
+      <li>Train your own AI models on SampleHook outputs.</li>
+    </ul>
+
+    <h2>4. Subscriptions (auto-renewal disclosure)</h2>
+    <p>SampleHook offers two auto-renewing subscriptions:</p>
+    <ul>
+      <li><strong>SampleHook Pro Monthly</strong> &mdash; $9.99 USD per month, 150 generation credits per month</li>
+      <li><strong>SampleHook Pro Annual</strong> &mdash; $79.99 USD per year, 150 generation credits per month, includes commercial license</li>
+    </ul>
+    <p>And one consumable in-app purchase:</p>
+    <ul>
+      <li><strong>50 Credit Top-Up</strong> &mdash; $4.99 USD, one-time</li>
+    </ul>
+
+    <div class="legal-block">
+      <p><strong>Auto-renewal.</strong> Payment is charged to your Apple ID account at purchase confirmation. The subscription automatically renews at the end of each billing period unless you cancel <strong>at least 24 hours before</strong> the renewal date. Your account will be charged for renewal within 24 hours of the end of the current period.</p>
+      <p><strong>Manage your subscription</strong> in <em>Settings &rarr; Apple ID &rarr; Subscriptions</em> on your iPhone, or via the App Store app. You can cancel anytime from there; cancellation takes effect at the end of the current billing period.</p>
+      <p><strong>No refunds</strong> are offered for partially used billing periods. All cancellations stop future charges only.</p>
+      <p><strong>Pricing changes:</strong> if we change subscription pricing, Apple&rsquo;s standard notification flow applies &mdash; you&rsquo;ll be asked to confirm the new price before the next renewal.</p>
+    </div>
+
+    <h2>5. Credits</h2>
+    <p>Generations consume credits. A Loose (style-led) generation costs <strong>3 credits</strong>; a Tight (voice-conversion) generation costs <strong>1 credit</strong>. Your balance is displayed at the top of the recording screen. Free-tier accounts receive 5 + 1 credits per calendar month, refreshed on the same day each month.</p>
+    <p>Credits don&rsquo;t roll over. Unused credits at the end of a billing month are forfeited. Top-up credit packs (consumable IAPs) do roll over until used. If a generation fails (the AI provider errors mid-flight), credits are automatically refunded.</p>
+
+    <h2>6. Acceptable use</h2>
+    <p>You may not:</p>
+    <ul>
+      <li>Reverse-engineer, decompile, or attempt to extract source code from the app</li>
+      <li>Probe, scan, or load-test the backend service</li>
+      <li>Use stolen Apple IDs, fraudulent payment methods, or any means to obtain credits without paying</li>
+      <li>Resell or redistribute SampleHook itself</li>
+      <li>Use the service to generate content that the underlying AI providers (Suno, ElevenLabs) prohibit per their own terms</li>
+    </ul>
+    <p>We may suspend or terminate your access if you violate any of the above.</p>
+
+    <h2>7. Service availability</h2>
+    <p>SampleHook depends on third-party APIs (Cloudflare, Suno via EvoLink, Replicate, ElevenLabs, Apple). We can&rsquo;t guarantee any of them will be available 24/7. If a provider goes down, generations may fail temporarily &mdash; your credits are refunded in that case. We may also pause the service for maintenance with reasonable notice.</p>
+
+    <h2>8. Disclaimers</h2>
+    <p>THE SERVICE IS PROVIDED &ldquo;AS IS&rdquo; WITHOUT WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT.</p>
+    <p>Generated audio is the output of probabilistic AI models. We can&rsquo;t guarantee the output will match the key, tempo, lyrics, or style you requested with 100% fidelity. Sometimes it won&rsquo;t. That&rsquo;s the nature of generative AI.</p>
+
+    <h2>9. Limitation of liability</h2>
+    <p>TO THE MAXIMUM EXTENT PERMITTED BY LAW, OUR TOTAL LIABILITY ARISING FROM YOUR USE OF SAMPLEHOOK IS LIMITED TO THE AMOUNT YOU PAID US IN THE 12 MONTHS PRECEDING THE CLAIM. WE ARE NOT LIABLE FOR ANY INDIRECT, INCIDENTAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES.</p>
+
+    <h2>10. Termination</h2>
+    <p>You can stop using SampleHook at any time by deleting the app. We can stop providing the service to you if you violate these terms. Either way, subscription cancellation flows through Apple&rsquo;s standard process; see section 4.</p>
+
+    <h2>11. Governing law</h2>
+    <p>These terms are governed by the laws of the State of California, USA, without regard to its conflicts of law principles. Disputes are subject to the exclusive jurisdiction of the state and federal courts in San Francisco County, California.</p>
+
+    <h2>12. Changes</h2>
+    <p>We may update these terms. Material changes will be noted in the app&rsquo;s release notes and reflected here with a new &ldquo;Last updated&rdquo; date. Continued use after a change means you accept the updated terms.</p>
+
+    <h2>13. Contact</h2>
+    <p>Questions, abuse reports, license inquiries: <a href="mailto:support@samplehook.app">support@samplehook.app</a></p>
+  </main>
+
+  <footer>
+    &copy; 2026 SampleHook &middot; <a href="/">Home</a> &middot; <a href="/privacy">Privacy</a>
+  </footer>
+</body>
+</html>

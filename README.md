@@ -1,63 +1,44 @@
-# SampleHook Legal — publishing guide
+# SampleHook Legal — publishing via Vercel
 
-This folder contains the Privacy Policy + Terms of Use that App Store Connect
-requires URLs for. Two ways to publish; pick one.
+Static HTML pages (Privacy + Terms) for the SampleHook iOS app, deployed on
+Vercel and served at `https://samplehook.app/`. Same pattern Crate Dive uses
+(`SampleScout/landing/`).
 
-## Option A — Separate repo, custom domain (Recommended)
+## Files
 
-Cleanest because it keeps the iOS source repo private if you ever want to,
-and gives you a real `samplehook.app/privacy` URL.
+- `index.html` — landing page linking to both legal pages
+- `privacy.html` — Privacy Policy
+- `terms.html` — Terms of Use
+- `vercel.json` — `cleanUrls: true` + rewrites so `/privacy` and `/terms` map to the `.html` files
 
-1. Create a new public GitHub repo named `samplehook-legal`.
-2. Copy `privacy.md`, `terms.md`, `index.md`, and `_config.yml` into the root
-   of that repo.
-3. In repo **Settings → Pages**:
-   - Source: **Deploy from a branch**, branch: `main`, folder: `/ (root)`
-   - Click **Save**
-4. Wait ~1 minute. The site is live at
-   `https://<your-github-username>.github.io/samplehook-legal/`
-5. To get the friendly `samplehook.app/privacy` URL:
-   - Buy `samplehook.app` (or use whichever domain you control)
-   - DNS: add a CNAME record pointing `samplehook.app` → `<username>.github.io`
-   - In Pages settings, set the custom domain to `samplehook.app`
-   - Wait for the cert provision (~10 min)
-6. Final URLs to paste into App Store Connect:
-   - Privacy: `https://samplehook.app/privacy/`
-   - Terms: `https://samplehook.app/terms/`
+## One-time deploy
 
-## Option B — Subfolder of the existing repo
+1. Push the `samplehook-legal` repo to GitHub.
+2. https://vercel.com/new → **Import Git Repository** → pick `jagusking/samplehook-legal`
+3. Framework Preset: **Other** (it's plain HTML)
+4. Root Directory: leave blank (or `./`)
+5. Click **Deploy**. ~30 seconds to a `*.vercel.app` preview URL.
 
-Faster but couples publishing to the iOS source repo.
+## Custom domain
 
-1. Push this `legal/` folder as-is to `main`.
-2. In the existing VoxShot repo **Settings → Pages**:
-   - Source: **Deploy from a branch**, branch: `main`, folder: `/legal`
-   - Click **Save**
-3. Wait. The site goes live at
-   `https://<username>.github.io/VoxShot/privacy/`
-4. Paste that URL into App Store Connect. (No custom domain unless you wire
-   one up.)
+1. Vercel project → **Settings → Domains** → **Add**
+2. Enter `samplehook.app` → Vercel will detect the apex and offer two DNS options
+3. Recommended: **A record** to `76.76.21.21` (Vercel's apex IP). Add in Cloudflare:
+   - Type **A**, Name `@`, IPv4 `76.76.21.21`, Proxy status **DNS only** (gray cloud)
+4. Optionally also add `www.samplehook.app`:
+   - Type **CNAME**, Name `www`, Target `cname.vercel-dns.com`, **DNS only**
+5. Vercel auto-provisions SSL within 60 seconds. Done.
 
-## After publishing
+## Updating later
 
-- Verify both URLs load in a browser and on mobile Safari before pasting them
-  into App Store Connect.
-- Update App Store Connect → App → **App Information** → **Privacy Policy URL**
-- Apple displays the Terms URL as **EULA**. If you don't set one, Apple uses
-  their default EULA. To use your own:
-  - App → **App Information** → **License Agreement** → **Set Custom EULA** →
-    paste the Terms URL or upload the markdown content as a EULA.
+- Edit the HTML files locally
+- `git push origin main` from this repo
+- Vercel auto-deploys in ~20 seconds
 
-## Updating the policies later
+## Switching from GitHub Pages
 
-- Edit the `.md` files
-- Bump the "Last updated" date at the top of each
-- Commit + push — GitHub Pages auto-rebuilds in ~30s
-- Mention the change in the next app release notes
+If GitHub Pages was previously wired to the same domain:
 
-## Contact emails referenced
-
-The policies reference `support@samplehook.app` and `privacy@samplehook.app`. Set
-these up before publishing — easiest path is to enable email forwarding from
-your domain registrar (Cloudflare Email Routing is free) and point both to a
-single inbox you check.
+1. GitHub repo → **Settings → Pages → Custom domain → Remove**
+2. In Cloudflare DNS, delete the four `185.199.10X.153` A records that pointed to GitHub Pages
+3. Then add the Vercel A record above
