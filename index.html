@@ -16,6 +16,13 @@
   <meta property="og:image" content="https://samplehook.app/img/01_onboarding.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="theme-color" content="#0E0E10" />
+  <!-- Privacy-friendly analytics by Plausible (cookieless, no consent banner).
+       The "App Store Tap" goal is fired from the script block at the end of <body>. -->
+  <script async src="https://plausible.io/js/pa-ENJzgQen_CcsHkehqlWeB.js"></script>
+  <script>
+    window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+    plausible.init()
+  </script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -379,5 +386,62 @@
     </div>
   </footer>
 
+  <script>
+    // App Store campaign tagging — adds App Analytics pt/ct to every App Store link so
+    // installs show up in ASC → SampleHook → Analytics → Acquisition → Campaigns.
+    // An ad or post can force a campaign name by linking to samplehook.app/?ct=<name>.
+    (function () {
+      var PROVIDER_TOKEN = '128785891';
+      var params = new URLSearchParams(location.search);
+      var ua = navigator.userAgent || '';
+      var ref = document.referrer || '';
+      var paid = params.has('fbclid');
+      var campaign = params.get('ct');
+      if (!campaign) {
+        if (params.get('utm_content') === 'link_in_bio') campaign = 'ig-bio';
+        else if (/Instagram/.test(ua)) campaign = paid ? 'ig-ad' : 'ig-organic';
+        else if (/FBAN|FBAV/.test(ua)) campaign = paid ? 'fb-ad' : 'fb-organic';
+        else if (paid) campaign = 'meta-ad';
+        else if (/tiktok/i.test(ua + ref)) campaign = 'tiktok';
+        else if (/youtube\.com|youtu\.be/.test(ref)) campaign = 'youtube';
+        else if (/reddit\.com/.test(ref)) campaign = 'reddit';
+        else if (/google\.|bing\.|duckduckgo\./.test(ref)) campaign = 'search';
+      }
+
+      // Keep the campaign for the rest of the visit (e.g. a detour to /privacy and back).
+      try {
+        if (campaign) sessionStorage.setItem('sh_ct', campaign);
+        else campaign = sessionStorage.getItem('sh_ct');
+      } catch (e) {}
+      campaign = (campaign || 'site').replace(/[^\w.-]/g, '').slice(0, 30); // ASC limit: 30 chars
+
+      document.querySelectorAll('a[href^="https://apps.apple.com/"]').forEach(function (a) {
+        var url = new URL(a.href);
+        url.searchParams.set('pt', PROVIDER_TOKEN);
+        url.searchParams.set('ct', campaign);
+        url.searchParams.set('mt', '8');
+        a.href = url.toString();
+      });
+    })();
+
+    // "App Store Tap" goal — visitors who leave for the App Store, labelled by
+    // campaign and by which button they used.
+    (function () {
+      document.querySelectorAll('a[href^="https://apps.apple.com/"]').forEach(function (a) {
+        a.addEventListener('click', function () {
+          var ct = '';
+          try { ct = new URL(a.href).searchParams.get('ct') || ''; } catch (e) {}
+          var id = (a.href.match(/id(\d+)/) || [])[1];
+          window.plausible('App Store Tap', {
+            props: {
+              campaign: ct || 'none',
+              app: id === '6770707654' ? 'samplehook' : id === '6762646636' ? 'cratedive' : (id || 'unknown'),
+              cta: a.classList.contains('pill') ? 'nav' : a.closest('.hero') ? 'hero' : a.closest('.final') ? 'footer-cta' : a.closest('.more') ? 'more-tools' : 'other'
+            }
+          });
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
