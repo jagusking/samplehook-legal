@@ -1,0 +1,14 @@
+# SampleHook
+
+> SampleHook is an iPhone app (iOS 17+) that turns a hummed, sung or rapped idea, or typed lyrics, into an AI vocal sample in a chosen key and tempo. It returns an isolated vocal stem in about 90 seconds for use in an MPC, Maschine or any DAW, including Logic Pro (export the WAV and drag it in). Free to try; Pro adds more generations and a commercial release license.
+
+## Pages
+
+- [Home](https://samplehook.app/): what the app does, how it works, pricing, FAQ
+- [Does Suno Bridge work with Logic Pro?](https://samplehook.app/suno-bridge-logic): no, Bridge (beta, Nov 13, 2026) is Ableton Live 12 on Mac only; options for Logic users, updated 2026-11-19
+- [Privacy Policy](https://samplehook.app/privacy)
+- [Terms of Use](https://samplehook.app/terms)
+
+## App
+
+- App Store: https://apps.apple.com/app/id6770707654
